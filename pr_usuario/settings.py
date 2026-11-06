@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = 'static/'
 
 # Ruta absoluta necesaria para collectstatic
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-*&o+a=kcw=*b5m2he()$v*is!y0sbu+a$49^@biv&r#+_!wfm9'
 
