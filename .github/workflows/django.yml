@@ -12,7 +12,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.10', '3.11', '3.12']
 
     steps:
     - uses: actions/checkout@v4
@@ -38,6 +38,12 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
     - name: Trigger Deploy Webhook
+      env:
+        WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
       run: |
-        # Si utilizas una URL de despliegue automático (Deploy Hook de Render, Railway, etc.):
-        curl -X POST "${{ secrets.DEPLOY_WEBHOOK_URL }}"
+        if [ -n "$WEBHOOK_URL" ]; then
+          curl -X POST "$WEBHOOK_URL"
+          echo "Despliegue activado correctamente."
+        else
+          echo "DEPLOY_WEBHOOK_URL no está configurado aún. Saltando el despliegue."
+        fi
