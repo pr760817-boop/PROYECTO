@@ -1,8 +1,14 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = 'static/'
+
+# Ruta absoluta necesaria para collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-*&o+a=kcw=*b5m2he()$v*is!y0sbu+a$49^@biv&r#+_!wfm9'
 
@@ -26,7 +32,6 @@ INSTALLED_APPS = [
     'app_empleate',
     'app_feedback',
     'app_postulacion'
-    
 ]
 
 MIDDLEWARE = [
@@ -44,7 +49,7 @@ ROOT_URLCONF = 'pr_usuario.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'pr_usuario' / 'templates'], # <-- Se configuró la carpeta de templates global
+        'DIRS': [BASE_DIR / 'pr_usuario' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -94,6 +99,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
+
+# Ruta absoluta necesaria para el empaquetado y collectstatic en producción
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Email
 MAILERS = {
